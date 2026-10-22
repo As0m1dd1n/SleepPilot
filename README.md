@@ -34,3 +34,14 @@ npm run dev
 ```
 
 The first API request creates a demo profile when no profile exists. AI recommendations use deterministic local rules by default; an LLM provider can be added behind `RecommendationService` without changing the API.
+
+## Vercel deployment
+
+The repository includes a root `vercel.json` with two services:
+
+- `frontend` — public Vite application.
+- `backend` — FastAPI service exposed publicly through the `/api/*` rewrite.
+
+The frontend uses `/api` in production, so both services share one Vercel domain. Configure `DATABASE_URL` and `CORS_ORIGINS` in the Vercel project environment. No service binding is currently required because the frontend calls the backend from the browser through the public `/api` route, and the backend does not call another service.
+
+For Vercel, use an external managed PostgreSQL database. The local Docker PostgreSQL container is for development only and is not reachable from Vercel. Set `DATABASE_URL` to the provider's PostgreSQL connection string and set `CORS_ORIGINS` to the Vercel deployment URL.

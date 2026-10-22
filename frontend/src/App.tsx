@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-const API = import.meta.env.VITE_API_URL ?? "http://localhost:8000/api";
+const API = import.meta.env.VITE_API_URL ?? "/api";
 type Entry = { id: number; entry_date: string; bedtime: string; wake_time: string; duration_hours: number; sleep_quality: number; mood: number; caffeine_mg: number; screen_minutes: number; activity_minutes: number; notes?: string };
 type Recommendation = { title: string; text: string; priority: string; completed: boolean };
 type Dashboard = { profile: { name: string; target_sleep_hours: number }; entries: Entry[]; average_duration: number; average_quality: number; average_mood: number; sleep_consistency: number; goal_progress: number; insights: { label: string; value: string; detail: string; tone: string }[]; recommendations: Recommendation[] };
